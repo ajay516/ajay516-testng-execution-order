@@ -7,7 +7,7 @@ public class Actual1Test extends BaseTest {
 
   @Test
   public void test() {
-    System.out.println("Running test1");
+    System.out.printf("%12s - %s%n", Actual1Test.class.getSimpleName(), "test");
   }
 
 }

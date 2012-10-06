@@ -10,7 +10,7 @@ public class BaseTest {
 
   @BeforeClass
   protected void bestTestBeforeClass() {
-    System.out.println(BaseTest.class.getSimpleName() + " bestTestBeforeClass");
+    System.out.printf("%12s - %s%n", BaseTest.class.getSimpleName(), "BeforeClass");
     if (CREATED != null) {
       throw new IllegalStateException("There exists an object.");
     }
@@ -19,7 +19,7 @@ public class BaseTest {
 
   @AfterClass(alwaysRun = true)
   protected void bestTestAfterClass() {
-    System.out.println(BaseTest.class.getSimpleName() + " bestTestAfterClass");
+    System.out.printf("%12s - %s%n", BaseTest.class.getSimpleName(), "AfterClass");
     CREATED = null;
   }
 }

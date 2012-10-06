@@ -1,0 +1,8 @@
+name: Test Order
+preserveOrder: true
+
+tests:
+  - name: Regression
+    classes:
+      - tests.Actual2Test
+      - tests.Actual1Test
