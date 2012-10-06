@@ -25,16 +25,16 @@ public class Actual1Test extends BaseTest {
 
   @Test
   public void test() {
-    System.out.printf("%12s - %s%n", Actual1Test.class.getSimpleName(), "test");
+    log();
   }
 
   @Test(dependsOnMethods = "test")
   public void test3() {
-    System.out.printf("%12s - %s%n", Actual1Test.class.getSimpleName(), "test3");
+    log();
   }
 
   @Test(dataProvider = PARAMETERS)
   public void test4(String parameter) {
-    System.out.printf("%12s - %s - %s%n", Actual1Test.class.getSimpleName(), "test4", parameter);
+    log(parameter);
   }
 }

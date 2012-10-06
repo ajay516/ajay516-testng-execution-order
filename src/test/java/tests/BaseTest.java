@@ -9,8 +9,8 @@ public class BaseTest {
   private static Object CREATED = null;
 
   @BeforeClass
-  protected void bestTestBeforeClass() {
-    System.out.printf("%12s - %s%n", BaseTest.class.getSimpleName(), "BeforeClass");
+  protected void beforeClass() {
+    log();
     if (CREATED != null) {
       throw new IllegalStateException("There exists an object.");
     }
@@ -18,8 +18,31 @@ public class BaseTest {
   }
 
   @AfterClass(alwaysRun = true)
-  protected void bestTestAfterClass() {
-    System.out.printf("%12s - %s%n", BaseTest.class.getSimpleName(), "AfterClass");
+  protected void afterClass() {
+    log();
     CREATED = null;
   }
+
+  protected void log() {
+    StackTraceElement element = new Throwable().getStackTrace()[1];
+    String className = getCallerSimpleClassName(element);
+    System.out.printf("%12s(%s) - %s%n", className, getClass().getSimpleName(), element.getMethodName());
+  }
+
+  protected void log(String parameter) {
+    StackTraceElement element = new Throwable().getStackTrace()[1];
+    String className = getCallerSimpleClassName(element);
+    System.out
+        .printf("%12s(%s) - %s - %s%n", className, getClass().getSimpleName(), element.getMethodName(), parameter);
+  }
+
+  private String getCallerSimpleClassName(StackTraceElement element) {
+    String className = element.getClassName();
+    int idx = className.lastIndexOf('.');
+    if (idx > 0) {
+      className = className.substring(idx + 1);
+    }
+    return className;
+  }
+
 }
